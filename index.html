@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генератор дразнилок</title>
+</head>
+<body>
+    <h1>Генератор дразнилок</h1>
+    
+    <div id="output"></div>
+    
+    <button onclick="generateAllInsults()">Сгенерировать все варианты</button>
+
+    <script>
+        
+        var bodyParts = ["ухо", "глаз", "рука", "нога", "спина"];
+        var adjectives = ["смешной", "страшный", "косой", "кривой", "дрожащий"];
+        var animals = ["хомяк", "бегемот", "червяк", "таракан", "осьминог"];
+
+        var animalBodyParts = ["хвост", "морда", "лапа", "грива", "клюв"];
+        var animalNames = ["поросёнка", "обезьяны", "страуса", "кита", "крокодила"];
+
+        function generateBasicInsultPlus() {
+            
+            var randomBodyPart = bodyParts[Math.floor(Math.random() * bodyParts.length)];
+            var randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
+            var randomAnimal = animals[Math.floor(Math.random() * animals.length)];
+            
+            return "У тебя " + randomBodyPart + " словно " + randomAdjective + " " + randomAnimal + "!!!";
+        }
+
+        function generateBasicInsultJoin() {
+            
+            var randomBodyPart = bodyParts[Math.floor(Math.random() * bodyParts.length)];
+            var randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
+            var randomAnimal = animals[Math.floor(Math.random() * animals.length)];
+            
+            var words = ["У тебя", randomBodyPart, "словно", randomAdjective, randomAnimal + "!!!"];
+            return words.join(" ");
+        }
+
+        function generateAdvancedInsult() {
+            
+            var randomBodyPart = bodyParts[Math.floor(Math.random() * bodyParts.length)];
+            var randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
+            var randomAnimalPart = animalBodyParts[Math.floor(Math.random() * animalBodyParts.length)];
+            var randomAnimal = animalNames[Math.floor(Math.random() * animalNames.length)];
+            
+            return "У тебя " + randomBodyPart + " еще более " + randomAdjective + 
+                   ", чем " + randomAnimalPart + " у " + randomAnimal + "!";
+        }
+
+        function joinNumbers() {
+            
+            var numbers = [3, 2, 1];
+            return numbers.join(" больше, чем ");
+        }
+
+        function generateAllInsults() {
+            var output = document.getElementById('output');
+            var html = '<h2>#1. Новые дразнилки (оператор +):</h2>';
+            html += '<p>' + generateBasicInsultPlus() + '</p>';
+            
+            html += '<h2>#1. Новые дразнилки (метод join):</h2>';
+            html += '<p>' + generateBasicInsultJoin() + '</p>';
+            
+            html += '<h2>#2. Изощренные дразнилки:</h2>';
+            html += '<p>' + generateAdvancedInsult() + '</p>';
+            
+            html += '<h2>#4. Соединение чисел:</h2>';
+            html += '<p>' + joinNumbers() + '</p>';
+            
+            output.innerHTML = html;
+        }
+
+        
+        generateAllInsults();
+    </script>
+</body>
+</html>
